@@ -68,8 +68,8 @@ jobs:
     - name: Prepare the build environment
       run: |
         sudo apt install git aria2 -y
-        apt install openssh-server -y
-        apt install git-core gnupg flex bison build-essential \
+        sudo apt install openssh-server -y
+        sudo apt install git-core gnupg flex bison build-essential \
         zip curl zlib1g-dev gcc-multilib g++-multilib \
         libc6-dev-i386 libncurses5-dev lib32ncurses5-dev \
         x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev \
