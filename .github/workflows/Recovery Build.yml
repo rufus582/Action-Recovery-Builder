@@ -3,7 +3,7 @@ name: Recovery Build
 on:
   workflow_dispatch:
     inputs:
-      SYNC_URL:
+      MANIFEST_URL:
         description: 'MANIFEST_URL'
         required: true
         default: 'https://github.com/PitchBlackRecoveryProject/manifest_pb'
@@ -81,13 +81,13 @@ jobs:
         chmod a+x ~/bin/repo
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
-    - name: Sync PBRP sources and minimal manifest
+    - name: Sync PBRP sources
       run: |
         cd ${{ steps.pwd.outputs.workspace-folder }}
         mkdir pbrp_${{ github.event.inputs.MANIFEST_BRANCH }}
         cd pbrp_${{ github.event.inputs.MANIFEST_BRANCH }}
-        repo init -u ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.MANIFEST_BRANCH }}
-        repo sync -j 20
+        ~/bin/repo init -u ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.MANIFEST_BRANCH }}
+        ~/bin/repo sync -j 20
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Clone device tree
